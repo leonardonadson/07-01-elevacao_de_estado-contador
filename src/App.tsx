@@ -1,35 +1,41 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
 
-function App() {
-  const [count, setCount] = useState(0)
+const MeuBotao = (props: any) => {
+	const [contador, setContador] = useState(0);
+	const tratarOnClick = () => setContador(contador + 1);
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+	return (
+		<button onClick={tratarOnClick} onMouseMove={props.contar}>
+			{props.titulo} {contador} ({props.contador})
+		</button>
+	);
+};
 
-export default App
+const App = () => {
+	const [contador, setContador] = useState(0);
+	const contarEmApp = () => setContador(contador + 1);
+
+	return (
+		<>
+			<h1>Aplicativo exemplo de elevação de estado</h1>
+			<MeuBotao
+				titulo={"Contador de bom dia"}
+				contador={contador}
+				contar={contarEmApp}
+			/>
+			<MeuBotao
+				titulo={"Contador de boa tarde"}
+				contador={contador}
+				contar={contarEmApp}
+			/>
+			<MeuBotao
+				titulo={"Contador de boa noite"}
+				contador={contador}
+				contar={contarEmApp}
+			/>
+		</>
+	);
+};
+
+export default App;
